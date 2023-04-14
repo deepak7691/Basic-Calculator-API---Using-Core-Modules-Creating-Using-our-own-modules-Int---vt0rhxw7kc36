@@ -127,7 +127,7 @@ app.post("/divide", function (req, res) {
       message: `The division of given numbers`,
       result: result,
     };
-    //3. Send the Response
+
     res.send(response);
   }
 });
