@@ -1,12 +1,11 @@
 const express = require("express");
 const app = express();
+//To Read The Contents of the Body
 
-// To Read The Contents of the Body
 app.use(express.json());
 
 const port = 3000;
 
-// Function to check if a number is underflow
 function isUnderflow(parameter) {
   if (parameter < -1000000) {
     return true;
@@ -14,7 +13,6 @@ function isUnderflow(parameter) {
   return false;
 }
 
-// Function to check if a number is overflow
 function isOverflow(parameter) {
   if (parameter > 1000000) {
     return true;
@@ -22,7 +20,6 @@ function isOverflow(parameter) {
   return false;
 }
 
-// Function to validate the request data
 function validateRequest(num1, num2, result) {
   if (typeof num1 === "string" || typeof num2 === "string") {
     return {
@@ -43,72 +40,88 @@ function validateRequest(num1, num2, result) {
     return null;
   }
 }
-
-// Route for handling root endpoint
 app.get("/", function (req, res) {
   res.send("Hello world!");
 });
-
-// Route for handling addition operation
 app.post("/add", function (req, res) {
-  // Read the request body data
+  //We need Two Numbers to Add
+  //In Post Request The Data is Sent in the Body
+  //Request Magic
+  //Read The request Body Data
+
+  //1. Understand the Request
   const { num1, num2 } = req.body;
   const sum = num1 + num2;
   const requestNotValidated = validateRequest(num1, num2, sum);
   if (requestNotValidated) {
     res.send(requestNotValidated);
   } else {
-    // Create a response
+    //Create A Response
     const response = {
       status: "success",
-      message: `The sum of the given two numbers`,
+      message: `the sum of given two numbers`,
       sum: sum,
     };
     res.send(response);
   }
+  //3. Send the Response
 });
 
-// Route for handling subtraction operation
 app.post("/sub", function (req, res) {
-  // Read the request body data
+  //We need Two Numbers to Add
+  //In Post Request The Data is Sent in the Body
+  //Request Magic
+  //Read The request Body Data
+
+  //1. Understand the Request
   const { num1, num2 } = req.body;
   const difference = num1 - num2;
   const requestNotValidated = validateRequest(num1, num2, difference);
   if (requestNotValidated) {
     res.send(requestNotValidated);
   } else {
-    // Create a response
+    //Create A Response
     const response = {
       status: "success",
-      message: `The difference of the given two numbers`,
+      message: `the difference of given two numbers`,
       difference: difference,
     };
+    //3. Send the Response
     res.send(response);
   }
 });
 
-// Route for handling multiplication operation
 app.post("/multiply", function (req, res) {
-  // Read the request body data
+  //We need Two Numbers to Add
+  //In Post Request The Data is Sent in the Body
+  //Request Magic
+  //Read The request Body Data
+
+  //1. Understand the Request
   const { num1, num2 } = req.body;
   const result = num1 * num2;
   const requestNotValidated = validateRequest(num1, num2, result);
   if (requestNotValidated) {
     res.send(requestNotValidated);
   } else {
-    // Create a response
+    //Create A Response
     const response = {
       status: "success",
-      message: `The product of the given numbers`,
+      message: `The product of given numbers`,
       result: result,
     };
+    //3. Send the Response
     res.send(response);
   }
 });
 
-// Route for handling division operation
 app.post("/divide", function (req, res) {
-  // Read the request body data
+  //We need Two Numbers to Add
+  //In Post Request The Data is Sent in the Body
+  //Request Magic
+  //Read The request Body Data
+
+  //1. Understand the Request
   const { num1, num2 } = req.body;
   const result = num1 / num2;
   const requestNotValidated = validateRequest(num1, num2, result);
@@ -127,7 +140,7 @@ app.post("/divide", function (req, res) {
       message: `The division of given numbers`,
       result: result,
     };
-
+    //3. Send the Response
     res.send(response);
   }
 });
